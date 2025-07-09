@@ -1,0 +1,21 @@
+system: 1.0.0
+info:
+  name: kawamataryo resume
+envs:
+  prod:
+    branch: master
+routes:
+  main_env: prod
+  main_app: frontend
+apps:
+  frontend:
+    type: web_frontend
+    envs:
+      prod:
+        build:
+          root_path: ./
+          before_script: NODE_VERSION=20
+          script: npm run docs:build
+        provision:
+          root_path: docs/.vitepress/dist
+          type: nodejs18x
